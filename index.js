@@ -18,7 +18,7 @@ app.use('/login', userController);
 app.use('/users', userController);
 app.post('/register', 
 body('full_name').isLength({min:5, max:15}),
-body("email").isEmail()
+body("email")
 // .custom(async(value) =>{
 //   const mail = await User.findOne({email:value});
 //   if(mail) {
