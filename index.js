@@ -39,7 +39,7 @@ app.set('view engine', 'ejs')
 app.get('/', (req, res) => res.render('pages/index'))
 // app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 8252
 
 app.listen(port, async()=>{
     try{
@@ -49,9 +49,3 @@ app.listen(port, async()=>{
         console.log({message:e.message});
     }
 })
-
-
-
-
-
-
