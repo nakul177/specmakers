@@ -21,8 +21,8 @@ const register = async(req, res)=>{
         if (!errors.isEmpty()) {
             return res.render("users/register.ejs",{errors:errors.array()});
             // res.render("users/register.ejs",{user})
-            res.render.alert("invalid");
-            alert({ errors: errors.array() })
+            // res.render.alert("invalid");
+            // alert({ errors: errors.array() })
           return res.status(400).json({ errors: errors.array() });
 
         }
