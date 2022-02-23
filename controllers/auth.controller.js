@@ -7,9 +7,14 @@ const newToken = (user)=>{
 
 const login= async(req, res)=>{
     try{
-        const user = await User.find().lean().exec();
-        console.log(user);
-        return res.render("users/register.ejs",{user});
+        const user = await User.findOne({email:req.body.email}).lean().exec();
+        if(user) {
+
+            console.log(user);
+            return res.render("users/login.ejs",{user})
+        } 
+        else 
+        return res.render(res.render('/public/index.html'));
     } catch(e){
         return res.status(500).send({message:e.message});
     }
@@ -19,10 +24,6 @@ const register = async(req, res)=>{
     try{
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            // return res.render("users/register.ejs",{errors:errors.array()});
-            // res.render("users/register.ejs",{user})
-            // res.render.alert("invalid");
-            // alert({ errors: errors.array() })
           return res.status(400).json({ errors: errors.array() });
 
         }

@@ -12,7 +12,6 @@ app.use(express.json());
 
 app.use(express.urlencoded({extended: true }))
 
-// app.get('/', (req, res) => res.render('pages/index'))
 app.use('/register', userController);
 app.use('/login', userController);
 app.use('/users', userController);
@@ -24,14 +23,11 @@ body('password').isStrongPassword(), register);
 
 app.post('/login', login)
 
-// app.set("view engine", "ejs");
-// app.use(express.static("public"))
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 app.get('/', (req, res) => res.render('pages/index'))
-// app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 const port = process.env.PORT || 8252
 
