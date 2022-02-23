@@ -26,13 +26,13 @@ const register = async(req, res)=>{
           return res.status(400).json({ errors: errors.array() });
 
         }
-        const user = await User.findOne({email:req.body.email}).lean().exec();
         await User.create({
             full_name:req.body.full_name,
             email:req.body.email,
             password:req.body.password,
             type:"customer"
         })
+        const user = await User.findOne({email:req.body.email}).lean().exec();
         const token = newToken(user) 
         return res.render("users/login.ejs",{user});
     } catch(e){
