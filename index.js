@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require('express')
 const path = require('path')
 const connect = require('./configs/db');
-const userController = require('./controllers/user.controller');
+const userController = require('./controllers/users.controller');
 const {register, login} = require('./controllers/auth.controller');
 const {body, validationResult} = require('express-validator');
 
