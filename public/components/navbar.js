@@ -29,7 +29,7 @@ function navbar (){
   <!-- account section last -->
 
 
-
+  <!--  3rd menu bar section -->
   <div id="menu3" class="width100 backwhite height53p borbot2p">
       <div class="width90 flex marauto jusspacebet">
         <div id="menucol3" class="flex">
@@ -65,6 +65,9 @@ function navbar (){
  
   </div>
 </div>
+<!--  3rd bar section section -->
+
+<!-- rsponsive account section -->
 <div id="resmenu">
   <div id="resmenu_content">
       <div>
@@ -87,8 +90,8 @@ function navbar (){
       <div  id="nolog" class="flex jusspacebet">
           <div class="flex jusspacebet">
               <div id="formar" class="flex">
-              <div><a id="black" href="./account/login.html">LOGIN</a></div>
-              <div><a id="black" href="./account/login.html">REGISTER</a></div>
+              <div><a id="black" href="http://localhost:8252/register">LOGIN</a></div>
+              <div><a id="black" href="http://localhost:8252/register">REGISTER</a></div>
               </div>
               <div id="formar2"><a id="black" href="./account/login.html"><i class="far marl5p fa-user-circle"></i></a></div>
           </div>
@@ -146,6 +149,8 @@ function navbar (){
       </div>
   </div>
 </div>
+<!-- responsive account section last -->
+
 
 
 <div id="main_account">
