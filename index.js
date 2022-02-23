@@ -19,13 +19,13 @@ app.use('/users', userController);
 app.post('/register', 
 body('full_name').isLength({min:5, max:15}),
 body("email").isEmail()
-.custom(async(value) =>{
-  const mail = await User.findOne({email:value});
-  if(mail) {
-    throw new Error("email already exist");
-  }
-  return true;
-})
+// .custom(async(value) =>{
+//   const mail = await User.findOne({email:value});
+//   if(mail) {
+//     throw new Error("email already exist");
+//   }
+//   return true;
+// })
 ,
 body('password').isStrongPassword(), register);
 app.post('/login', login)
