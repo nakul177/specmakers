@@ -1,4 +1,6 @@
+require("dotenv").config();
 const express = require('express')
+const connect = require('./configs/db');
 const path = require('path')
 const port = process.env.PORT || 5000
 
@@ -15,7 +17,7 @@ app.get('/', (req, res) => res.render('pages/index'))
 
 app.listen(port, async()=>{
     try{
-        // await connect();
+        await connect();
         console.log(`listening on port ${port} ....`)
     } catch(e){
         console.log({message:e.message});
@@ -24,8 +26,6 @@ app.listen(port, async()=>{
 
 
 
-// require("dotenv").config();
-// const connect = require('./configs/db');
 // const userController = require('./controllers/user.controller');
 // const {register, login} = require('./controllers/auth.controller');
 // const {body, validationResult} = require('express-validator');
@@ -54,5 +54,3 @@ app.listen(port, async()=>{
 
 // app.set("view engine", "ejs");
 // app.use(express.static("public"))
-
-// const port = process.env.PORT || 8222;
