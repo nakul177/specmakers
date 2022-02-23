@@ -8,7 +8,7 @@ const newToken = (user)=>{
 const login= async(req, res)=>{
     try{
         const user = await User.find().lean().exec();
-
+        console.log(user);
         return res.render("users/register.ejs",{user});
     } catch(e){
         return res.status(500).send({message:e.message});
