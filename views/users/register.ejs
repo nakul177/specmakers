@@ -64,5 +64,35 @@
 
 
  <script src="/js/users/index.js"></script>
+ <script>
+     let name = document.getElementById('name').value;
+     console.log(name);
+    let user_cred=JSON.parse(localStorage.getItem("User"))||[];
+    
+    function User(){
+       let user_credientials={
+           name:document.getElementById("name").value,
+           email:document.getElementById("email").value,
+           password:document.getElementById("password").value,
+       }
+       let count=0;
+       for (var i in user_credientials) {
+         if(user_credientials[i].length!=0){
+            count++; 
+         }
+       }
+       if(count>2){
+       user_cred.push(user_credientials);
+       localStorage.setItem("User",JSON.stringify(user_cred));
+       console.log(user_cred);
+       alert("Registration Successful")
+         window.location.href="login.html";
+       }
+       else{
+           alert("invalid credientials")
+       }
+    }
+    
+</script>
 </body>
 </html>
