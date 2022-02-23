@@ -16,18 +16,12 @@ app.use(express.urlencoded({extended: true }))
 app.use('/register', userController);
 app.use('/login', userController);
 app.use('/users', userController);
+
 app.post('/register', 
 body('full_name').isLength({min:5, max:15}),
-body("email")
-// .custom(async(value) =>{
-//   const mail = await User.findOne({email:value});
-//   if(mail) {
-//     throw new Error("email already exist");
-//   }
-//   return true;
-// })
-,
+body("email").isEmail(),
 body('password').isStrongPassword(), register);
+
 app.post('/login', login)
 
 // app.set("view engine", "ejs");
