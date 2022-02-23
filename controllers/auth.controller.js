@@ -7,20 +7,21 @@ const newToken = (user)=>{
 
 const login= async(req, res)=>{
     try{
-        const user = await User.findOne({email:req.body.email}).lean().exec();
-        console.log(req.body.password)
+        const user = await User.findOne({email:req.body.email});
+        
         if(!user) return res.status(400).send({message:e.message});
         
         
         const match = user.checkPassword(req.body.password);
         if(!match) return res.status(400).send("invalid crendentials");
         const token = newToken(user);
-        const obj = {
-            "username":req.body.full_name,
-            "token":token,
-        }
-        localStorage.setItem("loginStatus", Json.stringify(obj))
-        return res.render("/public/index.html",{user})
+        // const obj = {
+        //     "username":req.body.full_name,
+        //     "token":token,
+        // }
+        // localStorage.setItem("loginStatus", Json.stringify(obj))
+        console.log(req.body.password)
+        return res.render("../public/index.html")
     } catch(e){
         return res.status(500).send({message:e.message});
     }
