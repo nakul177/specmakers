@@ -8,13 +8,15 @@ const newToken = (user)=>{
 const login= async(req, res)=>{
     try{
         const user = await User.findOne({email:req.body.email}).lean().exec();
-        if(user) {
+        console.log(req.body.password)
+        if(user.password==req.body.password) {
 
             console.log(user);
-            return res.render("users/login.ejs",{user})
+            return res.render(res.render('/public/index.html'));
         } 
         else 
-        return res.render(res.render('/public/index.html'));
+        
+        return res.render("users/login.ejs",{user})
     } catch(e){
         return res.status(500).send({message:e.message});
     }
