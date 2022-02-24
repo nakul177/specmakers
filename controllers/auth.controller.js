@@ -1,6 +1,7 @@
 const {body, validationResult} = require('express-validator');
 const jwt = require('jsonwebtoken');
 const User = require('../models/users.model');
+const path = require('path')
 const newToken = (user)=>{
     return jwt.sign({user}, process.env.JWT_SECRET_KEY);
 }
