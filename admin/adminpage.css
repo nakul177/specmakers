@@ -1,0 +1,16 @@
+#adminpage{
+    margin: 120px 0px 0px 80px;
+}
+#product input{
+    margin-bottom: 20px;
+    display: flex;
+    width: 500px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 20px;
+}
+#product label{
+    margin-top: 10px;
+    font-size: 20px;
+      
+}
