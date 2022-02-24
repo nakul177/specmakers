@@ -19,8 +19,8 @@ const login= async(req, res)=>{
         //     "token":token,
         // }
         // localStorage.setItem("loginStatus", Json.stringify(obj))
-        console.log(req.body.password)
-        window.location.href("/public/index.html");
+        // console.log(req.body.password)
+        res.sendFile(path.join(__dirname+'/index.html'))
     } catch(e){
         return res.status(500).send({message:e.message});
     }
