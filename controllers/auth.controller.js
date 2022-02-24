@@ -13,7 +13,7 @@ const login= async(req, res)=>{
         if(!user) return res.status(400).send({message:e.message});
         
         const match = user.checkPassword(req.body.password);
-        if(!match) return res.status(400).send("invalid crendentials");
+        if(!match) return alert("invalid crendential");
         const token = newToken(user);
         // const obj = {
         //     "username":req.body.full_name,
@@ -21,7 +21,7 @@ const login= async(req, res)=>{
         // }
         // localStorage.setItem("loginStatus", Json.stringify(obj))
         // console.log(req.body.password)
-        res.sendFile(path.join(__dirname+'/index.html'))
+        res.sendFile(path.join(__dirname+'/public/index.html'))
     } catch(e){
         return res.status(500).send({message:e.message});
     }
