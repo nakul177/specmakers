@@ -21,6 +21,7 @@ const login= async(req, res)=>{
         // }
         // localStorage.setItem("loginStatus", Json.stringify(obj))
         // console.log(req.body.password)
+        console.log(__dirname)
         res.sendFile(path.join(__dirname+'../public/index.html'))
     } catch(e){
         return res.status(500).send({message:e.message});
