@@ -20,7 +20,7 @@ const login= async(req, res)=>{
         // }
         // localStorage.setItem("loginStatus", Json.stringify(obj))
         console.log(req.body.password)
-        windows.location.href("/public/index.html");
+        window.location.href("/public/index.html");
     } catch(e){
         return res.status(500).send({message:e.message});
     }
