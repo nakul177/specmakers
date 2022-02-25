@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
     <link rel="shortcut icon" href="//cdn.shopify.com/s/files/1/0015/2879/1092/files/fav_32x32_f3e96a89-85b4-4e5e-a7ff-90579a2ccc59_32x32.png?v=1583832747" type="image/png">
     <title>Account – Specsmakers Opticians PVT. LTD.</title>
     <style>
@@ -55,6 +56,9 @@
             background-color: black;
             color: white;
             cursor: pointer;
+        }
+        #error{
+            color: red;
         }
         div>hr{
             width: 90%;
@@ -246,10 +250,13 @@
         <h1>Sign In</h1>
        <input type="email" name="email" placeholder="Email address"  iid="Log_email">
        <input type="password" name="password" placeholder="Password"  id="Log_password">
+       <% if (locals.error) { %>
+                 <p id="error"> <b>!</b> <%= "inalid user name or password" %></p>
+        <% } %>
        <input id="button" type="submit" value="Continue" name="submit" onclick="user()">
     </form>
     <!-- -----------------------sign in last----------- -->
-
+    
 
        <p id="forpass">Forget Password?</p>
        <hr>
@@ -275,7 +282,7 @@
                 <div  ><img id="link"  src="https://img.icons8.com/color/2x/linkedin.png" alt="">  </div>
             </div></a>
             <a href="https://na.account.amazon.com/ap/signin?_encoding=UTF8&openid.mode=checkid_setup&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.claimed_id=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&openid.pape.max_auth_age=0&ie=UTF8&openid.ns.pape=http%3A%2F%2Fspecs.openid.net%2Fextensions%2Fpape%2F1.0&openid.identity=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0%2Fidentifier_select&pageId=lwa&openid.assoc_handle=amzn_lwa_na&marketPlaceId=ATVPDKIKX0DER&arb=2ff22118-5a50-4d97-b81d-d3f5ef57f2e9&language=en_US&openid.return_to=https%3A%2F%2Fna.account.amazon.com%2Fap%2Foa%3FmarketPlaceId%3DATVPDKIKX0DER%26arb%3D2ff22118-5a50-4d97-b81d-d3f5ef57f2e9%26language%3Den_US&enableGlobalAccountCreation=1&metricIdentifier=amzn1.application.c6dce0cfaaf44c6e8242cad19aeb2dea&signedMetricIdentifier=Fm2rj%2Bb0mEonPjKGvqHvixwExJmJHGPYsq4zEu5G5eM%3D">  
-           <div id="amazon">
+           <div id="amazon"> 
         <div >Amazon Login</div> 
         <div ><img id="ama" src="https://cdn.iconscout.com/icon/free/png-64/amazon-2752252-2285069.png" alt=""></div>  
        </div></a>   
@@ -285,28 +292,33 @@
     </div>
 </div>
 
+
+
 </body>
 </html>
-<script type="module">
-
-    var user_cred=JSON.parse(localStorage.getItem("User"));
+<script>
+//     showAlert = function(err) {
+//  console.log(err);
+// alert('error: ' + err);
+// }
+    // var user_cred=JSON.parse(localStorage.getItem("User"));
        
-    document.getElementById("check").addEventListener("click",check);
-    function check(){
-        let email=document.getElementById("Log_email").value;
-       let password=document.getElementById("Log_password").value;
+    // document.getElementById("check").addEventListener("click",check);
+    // function check(){
+    //     let email=document.getElementById("Log_email").value;
+    //    let password=document.getElementById("Log_password").value;
        
-       if((email=="admin")&&(password=="admin")){
-           window.location.href="../components/admin.html"
-        }
-     else{
-       for (var i in user_cred){
-           if((user_cred[i].email=email)&&(user_cred[i].password==password)){
-            localStorage.setItem("cur_user", JSON.stringify(user_cred[i]));
-               alert("Login Successful");
-               window.location.href="../index.html";
-           }
-       }
-     }
-    }
+    //    if((email=="admin")&&(password=="admin")){
+    //        window.location.href="../components/admin.html"
+    //     }
+    //  else{
+    //    for (var i in user_cred){
+    //        if((user_cred[i].email=email)&&(user_cred[i].password==password)){
+    //         localStorage.setItem("cur_user", JSON.stringify(user_cred[i]));
+    //            alert("Login Successful");
+    //            window.location.href="../index.html";
+    //        }
+    //    }
+    //  }
+    // }
  </script>

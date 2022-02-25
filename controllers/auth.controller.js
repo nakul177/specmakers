@@ -1,7 +1,9 @@
 const {body, validationResult} = require('express-validator');
+const alert = require('alert')
 const jwt = require('jsonwebtoken');
 const User = require('../models/users.model');
-const path = require('path')
+const path = require('path');
+const { toPath } = require('lodash');
 const newToken = (user)=>{
     return jwt.sign({user}, process.env.JWT_SECRET_KEY);
 }
@@ -9,20 +11,27 @@ const newToken = (user)=>{
 const login= async(req, res)=>{
     try{
         const user = await User.findOne({email:req.body.email});
-        
-        if(!user) return res.status(400).send({message:e.message});
+        // let error = '';
+        if(!user) {
+            // const error = ("invalid username or password");
+            return res.render("users/login.ejs",{error:error})
+            // res.render('appandfeature',{data: apps, error:error})
+        } 
         
         const match = user.checkPassword(req.body.password);
-        if(!match) return alert("invalid crendential");
+        if(!match) {
+            error = 'invalid username or password'
+            return res.render("users/login.ejs",{error})
+        } 
         const token = newToken(user);
-        // const obj = {
-        //     "username":req.body.full_name,
-        //     "token":token,
-        // }
-        // localStorage.setItem("loginStatus", Json.stringify(obj))
-        // console.log(req.body.password)
-        console.log(__dirname)
-        res.sendFile(path.join(__dirname+'../public/index.html'))
+       
+        // return res.render("users/login.ejs",{user})
+
+        dir_name = path.normalize(`${__dirname}/..`)
+        let Path = path.join(dir_name+'/public/index.html')
+        // console.log(path.join(dir_name+'/public/index.html'));
+        const [username, type] = [user.first_name, user.type]
+        return res.render('users/index.ejs', {username:username, type:type});
     } catch(e){
         return res.status(500).send({message:e.message});
     }
@@ -32,7 +41,9 @@ const register = async(req, res)=>{
     try{
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-          return res.status(400).json({ errors: errors.array() });
+        //  const error = JSON({ errors: errors.array() });
+        //  console.log(errors.array());
+          return res.render("users/register.ejs",{errors:errors.array()})
         }
         await User.create({
             full_name:req.body.full_name,
@@ -48,4 +59,20 @@ const register = async(req, res)=>{
     }
 }
 
-module.exports = {register, login};
+const registeradmin = async(req, res)=>{
+    try{
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() })
+        }
+        await User.create(req.body)
+        const user = await User.findOne({email:req.body.email}).lean().exec();
+        const token = newToken(user) 
+        return res.send(user);
+        // return res.render("users/login.ejs",{user});
+    } catch(e){
+        return res.status(500).send({message:e.message});
+    }
+}
+
+module.exports = {register, login, registeradmin};

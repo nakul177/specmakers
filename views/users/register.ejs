@@ -23,6 +23,13 @@
        <input type="text" name="full_name" placeholder="Full Name" id="name">
        <input type="email" name="email" placeholder="Email address"  id="email">
        <input type="password" name="password" placeholder="Password"  id="password">
+       <% if (locals.errors) { %>
+        <%for(e of errors){ 
+          let error = JSON.stringify(e)%>
+          <p id="error"> <b>!</b> <%= e.msg %></p>
+        <% } %>
+        
+      <% } %>
        <input id="button" type="submit" value="Continue" name="submit" onclick="user()">
     </form>
       </form>
@@ -70,35 +77,6 @@ function onSubmitHandler(e) {
     console.log("e", e);
     e.preventDefault();
   }
-
-    //  let name = document.getElementById('name').value;
-    //  console.log(name);
-    // let user_cred=JSON.parse(localStorage.getItem("User"))||[];
-    
-    // function User(){
-    //    let user_credientials={
-    //        name:document.getElementById("name").value,
-    //        email:document.getElementById("email").value,
-    //        password:document.getElementById("password").value,
-    //    }
-    //    let count=0;
-    //    for (var i in user_credientials) {
-    //      if(user_credientials[i].length!=0){
-    //         count++; 
-    //      }
-    //    }
-    //    if(count>2){
-    //    user_cred.push(user_credientials);
-    //    localStorage.setItem("User",JSON.stringify(user_cred));
-    //    console.log(user_cred);
-    //    alert("Registration Successful")
-    //      window.location.href="login.html";
-    //    }
-    //    else{
-    //        alert("invalid credientials")
-    //    }
-    // }
-    
 </script>
 </body>
 </html>
